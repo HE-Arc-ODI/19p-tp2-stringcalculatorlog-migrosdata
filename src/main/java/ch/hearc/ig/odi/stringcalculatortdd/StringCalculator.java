@@ -5,8 +5,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class StringCalculator {
+    private static final Logger logger = LogManager.getLogger(StringCalculator.class);
 
     public StringCalculator() {
     }
