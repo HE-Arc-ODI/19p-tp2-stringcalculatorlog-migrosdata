@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
   <Appenders>
-    <File name="logFile" fileName="logs/stringCalculator.log">
+    <File name="warningLogFile" fileName="logs/warning.log">
+      <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+
+      <PatternLayout>
+        <Pattern>%d{HH:mm:ss} [%t] %-5level %c - %msg%n</Pattern>
+      </PatternLayout>
+    </File>
+    <File name="fatalLogFile" fileName="logs/fatal.log">
+      <LevelRangeFilter minLevel="FATAL" maxLevel="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout>
         <Pattern>%d{HH:mm:ss} [%t] %-5level %c - %msg%n</Pattern>
       </PatternLayout>
     </File>
     <Console name="console" target="SYSTEM_OUT">
+      <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout
         pattern="%highlight{%d{HH:mm:ss} [%t] %-5level %c - %msg%n}{FATAL=red, WARN=yellow, INFO=black}" disableAnsi="false"/>
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="all">
-      <AppenderRef ref="logFile" />
+    <Root level="trace">
+      <AppenderRef ref="console"/>
+      <AppenderRef ref="warningLogFile"/>
+      <AppenderRef ref="fatalLogFile"/>
     </Root>
   </Loggers>
 </Configuration>
