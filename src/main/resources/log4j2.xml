@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
   <Appenders>
+    <File name="logFile" fileName="logs/stringCalculator.log">
+      <PatternLayout>
+        <Pattern>%d{HH:mm:ss} [%t] %-5level %c - %msg%n</Pattern>
+      </PatternLayout>
+    </File>
     <Console name="console" target="SYSTEM_OUT">
       <PatternLayout
         pattern="%highlight{%d{HH:mm:ss} [%t] %-5level %c - %msg%n}{FATAL=red, WARN=yellow, INFO=black}" disableAnsi="false"/>
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="warn" additivity="false">
-      <AppenderRef ref="console" />
+    <Root level="all">
+      <AppenderRef ref="logFile" />
     </Root>
   </Loggers>
 </Configuration>
