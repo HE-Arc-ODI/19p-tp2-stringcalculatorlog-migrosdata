@@ -21,6 +21,7 @@ public class StringCalculator {
 
         //if it begins by '//' then it's a personalize delimiter(s)
         if (numbers.startsWith("//")) {
+            logger.info("// delimiter");
             delimiter = this.extractDelimiter(numbers);
             //"cut" the beginning of the string so that the personalize delimiter is removed
             numbersUpdated = numbers.substring(numbers.indexOf("\n") + 1);
@@ -43,10 +44,14 @@ public class StringCalculator {
                     negativeNumbers.add(numberInt);
                 else if (numberInt <= 1000)
                     returnValue += numberInt;
+                else {
+                    logger.warn("greater than 1000");
+                }
             }
         }
 
         if (negativeNumbers.size() > 0) {
+            logger.fatal("negative number " + negativeNumbers.toString());
             throw new RuntimeException("Negative not allowed: " + negativeNumbers.toString());
         }
 
